@@ -8,6 +8,7 @@
         "outDir": "build/js",
         "noEmitOnError": true,
         "allowJs": true,
-        "typeRoots": ["node_modules/@types", "node_modules/web-ext-types"]
+        "typeRoots": ["node_modules/@types", "node_modules/web-ext-types"],
+        "lib": ["es5", "es6", "dom"]
     }
 }
