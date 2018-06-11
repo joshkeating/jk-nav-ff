@@ -1,6 +1,6 @@
 import * as $ from "jquery";
 
-let color: string;
+let color: string = '#c6dafb';
 
 // retrieve current link highlight color 
 // chrome.storage.sync.get("currentColor", function (obj) {
