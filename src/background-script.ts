@@ -48,6 +48,7 @@ allSites.push(new Page('^https?://(www\.)?google\.([a-z\.]+)\/(?!reader\/).*$', 
 allSites.push(new Page('https?://(www\.)?reddit\.com\/.*', '#siteTable div.entry a.title', true));
 allSites.push(new Page('https?://arstechnica\.com\/.*', 'h2 > a', true));
 
+
 // determines if given url should be acted on
 function checkSiteValid(url: string): string {
     for (let index = 0; index < allSites.length; index++) {
@@ -60,39 +61,47 @@ function checkSiteValid(url: string): string {
     return null;
 }
 
-// function getSite(url: string): number {
-//     for (let index = 0; index < allSites.length; index++) {
-//         const element: Page = allSites[index];
-//         let regex: RegExp = new RegExp(element.getUrl(), 'i');
-//         if (regex.test(url)) {
-//             return index;
-//         } 
-//     }
-// }
+function handleMessage(message, sender, response) {
+    // return browser.bookmarks.search({
+    //   url: message.url
+    // }).then(function(results) {
+    //   return results.length > 0;
+    // });
 
-// Listener keeps the event page open until not needed
-browser.runtime.onMessage.addListener(function(request, sender, sendResponse) {
-    
-    if (checkSiteValid(request.url)) {
+    if (checkSiteValid(message.url)) {
 
-        // show page icon if site is valid
-        // chrome.pageAction.show(sender.tab.id);
-
-        let responseString: string = checkSiteValid(request.url);
-        sendResponse({pattern: responseString});
-
-        // // TODO: handle toggle of the site
-        // send url over to popup
-        // chrome.runtime.sendMessage({thisSite: allSites[getSite(request.url)]});
-        // if (request.cmd == 'toggle') {
-        //     allSites[getSite(request.url)].setEnabled(request.enabled);
-        //     chrome.runtime.sendMessage({temp: allSites[getSite(request.url)].getEnabled()});
-        //     chrome.tabs.executeScript(request.url, {code: 'location.reload()'}, function() {});
-        // } else {
-        //     let responseString: string = checkSiteValid(request.url);
-        //     sendResponse({pattern: responseString});
-        // }
-        
+        let responseString: string = checkSiteValid(message.url);
+        response({pattern: responseString});
     }
     return true;
-});
+  }
+
+browser.runtime.onMessage.addListener(handleMessage)
+
+
+// Listener keeps the event page open until not needed
+// browser.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+    
+//     if (checkSiteValid(request.url)) {
+
+//         // show page icon if site is valid
+//         // chrome.pageAction.show(sender.tab.id);
+
+//         let responseString: string = checkSiteValid(request.url);
+//         sendResponse({pattern: responseString});
+
+//         // // TODO: handle toggle of the site
+//         // send url over to popup
+//         // chrome.runtime.sendMessage({thisSite: allSites[getSite(request.url)]});
+//         // if (request.cmd == 'toggle') {
+//         //     allSites[getSite(request.url)].setEnabled(request.enabled);
+//         //     chrome.runtime.sendMessage({temp: allSites[getSite(request.url)].getEnabled()});
+//         //     chrome.tabs.executeScript(request.url, {code: 'location.reload()'}, function() {});
+//         // } else {
+//         //     let responseString: string = checkSiteValid(request.url);
+//         //     sendResponse({pattern: responseString});
+//         // }
+        
+//     }
+//     return true;
+// });
