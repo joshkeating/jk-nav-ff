@@ -2,27 +2,23 @@ import * as $ from "jquery";
 
 let color: string = '#c6dafb';
 
-// retrieve current link highlight color 
-// chrome.storage.sync.get("currentColor", function (obj) {
-//     color = obj.currentColor;
-// });
-
 function sendURL() {
 
     browser.runtime.sendMessage({
         url: window.location.href
     }).then(handleResponse)
 
-    
+    // function that fires if this script receives a response from the background script
     function handleResponse(pattern) {
         if (pattern) {
+
+            // grab url from passed response object
             let queryReadablePattern: string = pattern.response;
             $(document).ready(function() {
 
 
                 let currentIndex: number = 0;
                 let currentNode: HTMLElement;
-                // console.log(document.querySelector('a.storylink'));
                 
                 let allLinks: NodeListOf<HTMLElement>;
                 allLinks = document.querySelectorAll(queryReadablePattern);
@@ -53,8 +49,6 @@ function sendURL() {
         } 
         return;
       }
-
-
 }
 
 sendURL();
