@@ -1,7 +1,5 @@
 # jk-nav-ff
 
-_Developer: Joshua Keating_
-
 ## What Does This Do?
 
 #### _Because who likes moving the mouse anyway?_
@@ -28,10 +26,12 @@ npm run build
 ```
 
 To add to Firefox as an add-on:
+
 1. open Firefox
 2. enter `about:debugging` in the URL bar
 3. click "Load Temporary Add-on"
 4. open the extension's directory and select any file inside the extension.
+
 The extension will be installed, and will stay installed until you restart Firefox. 
 
 ## How To Use It
