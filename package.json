@@ -13,9 +13,6 @@
     "type": "git",
     "url": ""
   },
-  "devDependencies": {
-    "web-ext-types": "^2.1.0"
-  },
   "dependencies": {
     "@types/jquery": "^3.3.2",
     "awesome-typescript-loader": "^4.0.1",
