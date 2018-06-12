@@ -51,32 +51,42 @@ allSites.push(new Page('https?://arstechnica\.com\/.*', 'h2 > a', true));
 
 // determines if given url should be acted on
 function checkSiteValid(url: string): string {
+    console.log('entered chk site valid');  // DEBUG
     for (let index = 0; index < allSites.length; index++) {
         const element: Page = allSites[index];
         let regex: RegExp = new RegExp(element.getUrl(), 'i');
         if (regex.test(url)) {
+
+            console.log(element.getSelectors());  // DEBUG
+
             return element.getSelectors();
         }
     }
     return null;
 }
 
-function handleMessage(message, sender, response) {
-    // return browser.bookmarks.search({
-    //   url: message.url
-    // }).then(function(results) {
-    //   return results.length > 0;
-    // });
+function handleMessage(request, sender, sendResponse) {
 
-    if (checkSiteValid(message.url)) {
+    console.log(`content script sent a message: ${request.url}`);
 
-        let responseString: string = checkSiteValid(message.url);
-        response({pattern: responseString});
+    if (checkSiteValid(request.url)) {
+        let responseString: string = checkSiteValid(request.url);
+        sendResponse({response: responseString});
     }
     return true;
   }
-
+console.log('test');  // DEBUG
 browser.runtime.onMessage.addListener(handleMessage)
+
+
+// function handleMessage(request, sender, sendResponse) {
+//     console.log("Message from the content script: " +
+//       request.greeting);
+//     sendResponse({response: "Response from background script"});
+//   }
+  
+//   browser.runtime.onMessage.addListener(handleMessage);
+
 
 
 // Listener keeps the event page open until not needed

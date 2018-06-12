@@ -14,7 +14,7 @@
   ],
 
   "background": {
-    "scripts": ["jquery-3.3.1.min.js", "js/background-script.js"]  
+    "scripts": ["js/backgroundScript.js"]  
   },
 
   "content_scripts": [

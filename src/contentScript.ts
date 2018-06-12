@@ -9,6 +9,14 @@ let color: string = '#c6dafb';
 
 function sendURL() {
 
+          
+
+    // console.log(url);   // DEBUG
+
+    browser.runtime.sendMessage({
+        url: window.location.href
+    }).then(handleResponse)
+
     
     function handleResponse(pattern: string) {
         if (pattern) {
@@ -16,10 +24,11 @@ function sendURL() {
             $(document).ready(function() {
 
                 let currentIndex: number = 0;
-        
                 let currentNode: HTMLElement;
-        
-                let allLinks = document.querySelectorAll(pattern) as NodeListOf<HTMLElement>;
+
+                let allLinks :NodeListOf<HTMLElement>;
+                allLinks = document.querySelectorAll(pattern);
+
                 currentNode = allLinks[currentIndex];
                 currentNode.style.backgroundColor = color;
                 currentNode.focus();
@@ -44,17 +53,28 @@ function sendURL() {
              });
           
         } 
-
         return;
       }
-      
-    let pattern: string;
-    let url: string = window.location.href;
 
-    browser.runtime.sendMessage({
-        url: window.location.href
-    }).then(handleResponse)
 
 }
 
 sendURL();
+
+
+// function handleResponse(message) {
+//     console.log(`Message from the background script:  ${message.response}`);
+//     }
+    
+//     function handleError(error) {
+//     console.log(`Error: ${error}`);
+//     }
+    
+//     function notifyBackgroundPage(e) {
+//     var sending = browser.runtime.sendMessage({
+//         greeting: "Greeting from the content script"
+//     });
+//     sending.then(handleResponse, handleError);  
+//     }
+    
+//     window.addEventListener("click", notifyBackgroundPage);

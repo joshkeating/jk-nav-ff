@@ -4,7 +4,7 @@ const path = require('path');
 module.exports = {
     entry: {
         contentScript: path.join(__dirname, 'src/contentScript.ts'),
-        eventPage: path.join(__dirname, 'src/background-script.ts')
+        backgroundScript: path.join(__dirname, 'src/backgroundScript.ts')
     },
     output: {
         path: path.join(__dirname, 'build/js'),
