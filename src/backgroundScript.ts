@@ -43,7 +43,7 @@ class Page {
 
 // create array of sites
 let allSites: Page[] = [];
-allSites.push(new Page('https?://news\.ycombinator\.com\/.*', '.storylink', true));
+allSites.push(new Page('https?://news\.ycombinator\.com\/.*', 'a.storylink', true));
 allSites.push(new Page('^https?://(www\.)?google\.([a-z\.]+)\/(?!reader\/).*$', 'h3.r > a', true));
 allSites.push(new Page('https?://(www\.)?reddit\.com\/.*', '#siteTable div.entry a.title', true));
 allSites.push(new Page('https?://arstechnica\.com\/.*', 'h2 > a', true));
@@ -67,51 +67,10 @@ function checkSiteValid(url: string): string {
 
 function handleMessage(request, sender, sendResponse) {
 
-    console.log(`content script sent a message: ${request.url}`);
-
     if (checkSiteValid(request.url)) {
         let responseString: string = checkSiteValid(request.url);
         sendResponse({response: responseString});
     }
     return true;
   }
-console.log('test');  // DEBUG
 browser.runtime.onMessage.addListener(handleMessage)
-
-
-// function handleMessage(request, sender, sendResponse) {
-//     console.log("Message from the content script: " +
-//       request.greeting);
-//     sendResponse({response: "Response from background script"});
-//   }
-  
-//   browser.runtime.onMessage.addListener(handleMessage);
-
-
-
-// Listener keeps the event page open until not needed
-// browser.runtime.onMessage.addListener(function(request, sender, sendResponse) {
-    
-//     if (checkSiteValid(request.url)) {
-
-//         // show page icon if site is valid
-//         // chrome.pageAction.show(sender.tab.id);
-
-//         let responseString: string = checkSiteValid(request.url);
-//         sendResponse({pattern: responseString});
-
-//         // // TODO: handle toggle of the site
-//         // send url over to popup
-//         // chrome.runtime.sendMessage({thisSite: allSites[getSite(request.url)]});
-//         // if (request.cmd == 'toggle') {
-//         //     allSites[getSite(request.url)].setEnabled(request.enabled);
-//         //     chrome.runtime.sendMessage({temp: allSites[getSite(request.url)].getEnabled()});
-//         //     chrome.tabs.executeScript(request.url, {code: 'location.reload()'}, function() {});
-//         // } else {
-//         //     let responseString: string = checkSiteValid(request.url);
-//         //     sendResponse({pattern: responseString});
-//         // }
-        
-//     }
-//     return true;
-// });

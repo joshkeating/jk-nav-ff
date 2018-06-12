@@ -9,25 +9,23 @@ let color: string = '#c6dafb';
 
 function sendURL() {
 
-          
-
-    // console.log(url);   // DEBUG
-
     browser.runtime.sendMessage({
         url: window.location.href
     }).then(handleResponse)
 
     
-    function handleResponse(pattern: string) {
+    function handleResponse(pattern) {
         if (pattern) {
-
+            let queryReadablePattern: string = pattern.response;
             $(document).ready(function() {
+
 
                 let currentIndex: number = 0;
                 let currentNode: HTMLElement;
-
-                let allLinks :NodeListOf<HTMLElement>;
-                allLinks = document.querySelectorAll(pattern);
+                // console.log(document.querySelector('a.storylink'));
+                
+                let allLinks: NodeListOf<HTMLElement>;
+                allLinks = document.querySelectorAll(queryReadablePattern);
 
                 currentNode = allLinks[currentIndex];
                 currentNode.style.backgroundColor = color;
@@ -60,21 +58,3 @@ function sendURL() {
 }
 
 sendURL();
-
-
-// function handleResponse(message) {
-//     console.log(`Message from the background script:  ${message.response}`);
-//     }
-    
-//     function handleError(error) {
-//     console.log(`Error: ${error}`);
-//     }
-    
-//     function notifyBackgroundPage(e) {
-//     var sending = browser.runtime.sendMessage({
-//         greeting: "Greeting from the content script"
-//     });
-//     sending.then(handleResponse, handleError);  
-//     }
-    
-//     window.addEventListener("click", notifyBackgroundPage);
