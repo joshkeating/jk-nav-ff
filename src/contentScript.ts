@@ -34,54 +34,50 @@ function sendURL() {
 
                 document.addEventListener("keypress", function onEvent(event) {
                     let previousIndex: number = currentIndex;
-                    
                     let jumpAmount: number = 0;
+
+                    function processSelection(): void {
+                        allLinks[previousIndex].style.backgroundColor = "inherit";
+                        currentNode.style.backgroundColor = color;
+                        currentNode.focus();
+                    }
 
                     // advanced navigation 
                     if (potentialNumbers.indexOf(parseInt(event.key)) > -1) {
                         bufferFlag = true;
                         jumpAmount = parseInt(event.key);
 
+                        // create an listener for the second chord of the command
                         document.addEventListener("keypress", function onEvent(secondEvent) {
 
-                            if (secondEvent.key === "j" && currentIndex < allLinks.length - 1) {
-    
+                            if (secondEvent.key === "j" && currentIndex < allLinks.length - jumpAmount) {
                                 currentNode = allLinks[currentIndex+=jumpAmount];
-                                allLinks[previousIndex].style.backgroundColor = "inherit";
-                                currentNode.style.backgroundColor = color;
-                                currentNode.focus();
-                                jumpAmount = 0;
+                                processSelection();
                                 bufferFlag = false;
                             }
-                            else if (secondEvent.key === "k" && currentIndex > 0) {
+                            else if (secondEvent.key === "k" && currentIndex > jumpAmount - 1) {
                                 currentNode = allLinks[currentIndex-=jumpAmount];
-                                allLinks[previousIndex].style.backgroundColor = "inherit";
-                                currentNode.style.backgroundColor = color;
-                                currentNode.focus();
-                                jumpAmount = 0;
+                                processSelection();
                                 bufferFlag = false;
                             }
+                            // reset jump amount for next keypress
+                            jumpAmount = 0;
 
-                        });                        
+                        });
                     }
 
-                    else if (event.key === "j" && currentIndex < allLinks.length - 1 && bufferFlag == false) {
+                    if (bufferFlag == false) {
+
+                        if (event.key === "j" && currentIndex < allLinks.length - 1) {
     
-                        currentNode = allLinks[currentIndex+=1];
-                        allLinks[previousIndex].style.backgroundColor = "inherit";
-                        currentNode.style.backgroundColor = color;
-                        currentNode.focus();
+                            currentNode = allLinks[currentIndex+=1];
+                            processSelection();
+                        }
+                        else if (event.key === "k" && currentIndex > 0) {
+                            currentNode = allLinks[currentIndex-=1];
+                            processSelection();
+                        }
                     }
-                    else if (event.key === "k" && currentIndex > 0  && bufferFlag == false) {
-                        currentNode = allLinks[currentIndex-=1];
-                        allLinks[previousIndex].style.backgroundColor = "inherit";
-                        currentNode.style.backgroundColor = color;
-                        currentNode.focus();
-                    }
-
-
-
-                    
 
                 });
     
