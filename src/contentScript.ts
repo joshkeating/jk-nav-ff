@@ -1,6 +1,7 @@
 import * as $ from "jquery";
 
-let color: string = '#c6dafb';
+const color: string = '#c6dafb';
+const potentialNumbers: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 // TODO: implement preceeding number jump function 
 
@@ -16,8 +17,8 @@ function sendURL() {
 
             // grab url from passed response object
             let queryReadablePattern: string = pattern.response;
-            $(document).ready(function() {
 
+            $(document).ready(function() {
 
                 let currentIndex: number = 0;
                 let currentNode: HTMLElement;
@@ -29,23 +30,56 @@ function sendURL() {
                 currentNode.style.backgroundColor = color;
                 currentNode.focus();
         
+                let bufferFlag: boolean = false;
+
                 document.addEventListener("keypress", function onEvent(event) {
                     let previousIndex: number = currentIndex;
+                    
+                    let jumpAmount: number = 0;
 
+                    // advanced navigation 
+                    if (potentialNumbers.indexOf(parseInt(event.key)) > -1) {
+                        bufferFlag = true;
+                        jumpAmount = parseInt(event.key);
 
-                    if (event.key === "j" && currentIndex < allLinks.length - 1) {
+                        document.addEventListener("keypress", function onEvent(secondEvent) {
+
+                            if (secondEvent.key === "j" && currentIndex < allLinks.length - 1) {
+    
+                                currentNode = allLinks[currentIndex+=jumpAmount];
+                                allLinks[previousIndex].style.backgroundColor = "inherit";
+                                currentNode.style.backgroundColor = color;
+                                currentNode.focus();
+                                jumpAmount = 0;
+                                bufferFlag = false;
+                            }
+                            else if (secondEvent.key === "k" && currentIndex > 0) {
+                                currentNode = allLinks[currentIndex-=jumpAmount];
+                                allLinks[previousIndex].style.backgroundColor = "inherit";
+                                currentNode.style.backgroundColor = color;
+                                currentNode.focus();
+                                jumpAmount = 0;
+                                bufferFlag = false;
+                            }
+
+                        });                        
+                    }
+
+                    else if (event.key === "j" && currentIndex < allLinks.length - 1 && bufferFlag == false) {
     
                         currentNode = allLinks[currentIndex+=1];
                         allLinks[previousIndex].style.backgroundColor = "inherit";
                         currentNode.style.backgroundColor = color;
                         currentNode.focus();
                     }
-                    else if (event.key === "k" && currentIndex > 0) {
+                    else if (event.key === "k" && currentIndex > 0  && bufferFlag == false) {
                         currentNode = allLinks[currentIndex-=1];
                         allLinks[previousIndex].style.backgroundColor = "inherit";
                         currentNode.style.backgroundColor = color;
                         currentNode.focus();
                     }
+
+
 
                     
 
