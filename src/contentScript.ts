@@ -3,8 +3,6 @@ import * as $ from "jquery";
 const color: string = '#c6dafb';
 const potentialNumbers: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
-// TODO: implement preceeding number jump function 
-
 function sendURL() {
 
     browser.runtime.sendMessage({
@@ -18,14 +16,14 @@ function sendURL() {
             // grab url from passed response object
             let queryReadablePattern: string = pattern.response;
 
-            $(document).ready(function() {
+            document.addEventListener("DOMContentLoaded", function() {
 
                 let currentIndex: number = 0;
                 let currentNode: HTMLElement;
-                
                 let allLinks: NodeListOf<HTMLElement>;
                 allLinks = document.querySelectorAll(queryReadablePattern);
 
+                // focus first element in the list, apply color highlight
                 currentNode = allLinks[currentIndex];
                 currentNode.style.backgroundColor = color;
                 currentNode.focus();
@@ -66,10 +64,10 @@ function sendURL() {
                         });
                     }
 
+                    // run only when j or k is not followed by a number to jump
                     if (bufferFlag == false) {
 
                         if (event.key === "j" && currentIndex < allLinks.length - 1) {
-    
                             currentNode = allLinks[currentIndex+=1];
                             processSelection();
                         }
