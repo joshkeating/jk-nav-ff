@@ -2,6 +2,8 @@ import * as $ from "jquery";
 
 let color: string = '#c6dafb';
 
+// TODO: implement preceeding number jump function 
+
 function sendURL() {
 
     browser.runtime.sendMessage({
@@ -29,6 +31,8 @@ function sendURL() {
         
                 document.addEventListener("keypress", function onEvent(event) {
                     let previousIndex: number = currentIndex;
+
+
                     if (event.key === "j" && currentIndex < allLinks.length - 1) {
     
                         currentNode = allLinks[currentIndex+=1];
@@ -42,6 +46,9 @@ function sendURL() {
                         currentNode.style.backgroundColor = color;
                         currentNode.focus();
                     }
+
+                    
+
                 });
     
              });

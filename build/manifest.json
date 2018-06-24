@@ -23,7 +23,16 @@
       "js": ["jquery-3.3.1.min.js", "js/contentScript.js"],
       "run_at": "document_start"
     }
-  ]
+  ],
+
+  "browser_action": {
+  "browser_style": true,
+  "default_icon": {
+    "48": "icons/icon-48.png"
+  },
+  "default_title": "Options",
+  "default_popup": "options.html"
+}
 
 }
   
