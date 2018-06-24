@@ -1,5 +1,3 @@
-import * as $ from "jquery";
-
 const color: string = '#c6dafb';
 const potentialNumbers: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
@@ -16,6 +14,7 @@ function sendURL() {
             // grab url from passed response object
             let queryReadablePattern: string = pattern.response;
 
+            // fires on load of all the DOM content
             document.addEventListener("DOMContentLoaded", function() {
 
                 let currentIndex: number = 0;
