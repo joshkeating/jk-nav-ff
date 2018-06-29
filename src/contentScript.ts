@@ -1,4 +1,17 @@
-const color: string = '#c6dafb';
+let color: string;
+
+function onGot(currentColor) {
+    color = currentColor
+}
+  
+function onError(error) {
+    console.log(`Error: ${error}`);
+}
+
+let gettingItem = browser.storage.local.get("currentColor");
+gettingItem.then(onGot, onError);
+
+
 const potentialNumbers: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 function sendURL() {

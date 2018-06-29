@@ -28,6 +28,11 @@ class Page {
     }
 }
 
+// set default link highlight color
+browser.runtime.onInstalled.addListener(function() {
+    browser.storage.local.set({'currentColor': '#c6dafb'});
+});
+
 // create array of sites
 let allSites: Page[] = [];
 
