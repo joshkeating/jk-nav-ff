@@ -7,11 +7,11 @@ html, body {
 }
 
 .button {
-  margin: 3% auto;
-  padding: 6px;
+  margin: 4px;
+  padding: 16px;
   text-align: center;
   font-family: sans-serif;
-  font-size: 1.5em;
+  font-size: 1em;
   cursor: pointer;
 }
 
