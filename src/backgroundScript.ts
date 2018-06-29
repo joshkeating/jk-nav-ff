@@ -30,7 +30,7 @@ class Page {
 
 // set default link highlight color
 browser.runtime.onInstalled.addListener(function() {
-    browser.storage.local.set({'currentColor': '#c6dafb'});
+    browser.storage.local.set({currentColor: '#c6dafb'});    
 });
 
 // create array of sites
@@ -43,14 +43,10 @@ allSites.push(new Page('https?://arstechnica\.com\/.*', 'h2 > a', true));
 
 // determines if given url should be acted on
 function checkSiteValid(url: string): string {
-    console.log('entered chk site valid');  // DEBUG
     for (let index = 0; index < allSites.length; index++) {
         const element: Page = allSites[index];
         let regex: RegExp = new RegExp(element.getUrl(), 'i');
         if (regex.test(url)) {
-
-            console.log(element.getSelectors());  // DEBUG
-
             return element.getSelectors();
         }
     }

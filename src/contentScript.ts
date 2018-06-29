@@ -1,7 +1,8 @@
 let color: string;
 
-function onGot(currentColor) {
-    color = currentColor
+function onGot(item) {
+    color = item.currentColor;
+    console.log(color);
 }
   
 function onError(error) {
