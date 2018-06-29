@@ -1,0 +1,48 @@
+html, body {
+  width: 100px;
+}
+
+.hidden {
+  display: none;
+}
+
+.button {
+  margin: 3% auto;
+  padding: 6px;
+  text-align: center;
+  font-family: sans-serif;
+  font-size: 1.5em;
+  cursor: pointer;
+}
+
+.color-blue {
+  background-color: #c6dafb;
+}
+
+.color-blue:hover {
+  background-color: #b4d0ff;
+}
+
+.color-orange {
+  background-color: #fbe7c6;
+}
+
+.color-orange:hover {
+  background-color: #fdd99f;
+}
+
+.color-green {
+  background-color: #dafbc6;
+}
+
+.color-green:hover {
+  background-color: #c7ffa4;
+}
+
+.reset {
+  background-color: #ffffff;
+}
+
+.reset:hover {
+  background-color: #d8d8d8;
+}

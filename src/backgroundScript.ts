@@ -30,6 +30,7 @@ class Page {
 
 // create array of sites
 let allSites: Page[] = [];
+
 allSites.push(new Page('https?://news\.ycombinator\.com\/.*', 'a.storylink', true));
 allSites.push(new Page('^https?://(www\.)?google\.([a-z\.]+)\/(?!reader\/).*$', 'h3.r > a', true));
 allSites.push(new Page('https?://(www\.)?reddit\.com\/.*', '#siteTable div.entry a.title', true));
