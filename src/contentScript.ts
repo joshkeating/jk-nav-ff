@@ -4,7 +4,7 @@ function onGot(item) {
     color = item.currentColor;
     console.log(color);
 }
-  
+
 function onError(error) {
     console.log(`Error: ${error}`);
 }
