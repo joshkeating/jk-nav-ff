@@ -3,9 +3,15 @@
   "name": "jk-nav-ff",
   "version": "1.0",
 
-  "description": "Allows for jk navigation of select pages.",
+  "description": "Allows for jk navigation on select pages.",
   "icons": {
     "48": "icons/icon-48.png"
+  },
+
+  "applications": {
+  "gecko": {
+    "id": "jk-nav-ff@jk-nav.com"
+    }
   },
 
   "permissions": [
