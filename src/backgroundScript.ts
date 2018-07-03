@@ -29,8 +29,8 @@ class Page {
 }
 
 // set default link highlight color
-browser.runtime.onInstalled.addListener(function() {
-    browser.storage.local.set({currentColor: '#c6dafb'});    
+browser.runtime.onInstalled.addListener(function () {
+    browser.storage.local.set({ currentColor: '#c6dafb' });
 });
 
 // create array of sites
@@ -58,8 +58,8 @@ function handleMessage(request, sender, sendResponse) {
 
     if (checkSiteValid(request.url)) {
         let responseString: string = checkSiteValid(request.url);
-        sendResponse({response: responseString});
+        sendResponse({ response: responseString });
     }
     return true;
-  }
+}
 browser.runtime.onMessage.addListener(handleMessage)

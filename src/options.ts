@@ -1,4 +1,11 @@
 
+// look into reloading the CSS with `browser.tabs.insertCSS`, will need to pass
+// a message from content script to this script to get the current node
+// function getSelectedElement() {
+
+// }
+
+
  function handleClicks(): void {
 
     document.addEventListener("click", (e) => {
