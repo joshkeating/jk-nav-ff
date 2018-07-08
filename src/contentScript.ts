@@ -16,11 +16,13 @@ const potentialNumbers: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 function sendURL() {
 
+    // sends the current url to the background script 
     browser.runtime.sendMessage({
         url: window.location.href
     }).then(handleResponse)
 
     // function that fires if this script receives a response from the background script
+    // if the reponse is positive, handle the reponse message (the selector pattern)
     function handleResponse(pattern) {
         if (pattern) {
 
