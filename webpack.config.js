@@ -35,11 +35,6 @@ module.exports = {
         modules: ['node_modules', 'src']
     },
     plugins: [
-        new webpack.ProvidePlugin({
-            $: 'jquery',
-            jQuery: 'jquery'
-        }),
-
         // exclude locale files in moment
         new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)
     ]
