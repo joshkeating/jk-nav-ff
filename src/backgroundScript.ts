@@ -41,6 +41,11 @@ allSites.push(new Page('^https?://(www\.)?google\.([a-z\.]+)\/(?!reader\/).*$', 
 allSites.push(new Page('https?://(www\.)?reddit\.com\/.*', '#siteTable div.entry a.title', true));
 allSites.push(new Page('https?://arstechnica\.com\/.*', 'h2 > a', true));
 
+// for sites like lobsters, elements are generated with a key of six characters in the form of 
+// `#story_aaaaaa` which makes preset selectors impossible to use
+// this may benefit from changing Page.selector into a regex if more sites need this functionality
+// Example: #story_[six char id string] > div > div > span > a
+
 // determines if given url should be acted on
 function checkSiteValid(url: string): string {
     for (let index = 0; index < allSites.length; index++) {
