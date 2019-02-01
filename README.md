@@ -25,7 +25,7 @@ npm install
 npm run build
 ```
 
-To add to Firefox as an add-on:
+To add to Firefox as a temporary add-on:
 
 1. open Firefox
 2. enter `about:debugging` in the URL bar
