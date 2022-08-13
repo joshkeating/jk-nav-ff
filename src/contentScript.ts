@@ -22,7 +22,7 @@ function sendURL() {
     }).then(handleResponse)
 
     // function that fires if this script receives a response from the background script
-    // if the reponse is positive, handle the reponse message (the selector pattern)
+    // if the response is positive, handle the response message (the selector pattern)
     function handleResponse(pattern) {
         if (pattern) {
 
