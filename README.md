@@ -5,7 +5,7 @@
 #### _Because who likes moving the mouse anyway?_
 For those fond of vim keybindings, this allows you to navigate select links using the `j` and `k` keys. This is intended to be used primarily on sites that feature lists of links. This means that it works particularly well on content aggregator sites like [Hacker News](https://news.ycombinator.com) or [Reddit](https://www.reddit.com/).
 
-In the future I'd like to extend the functionality to include more keys on the homerow.
+In the future I'd like to extend the functionality to include more keys on the home-row.
 
 
 ## Installation
